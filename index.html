@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+
+      .box {
+        width: 200px;
+        height: 200px;
+      }
+
+      .box.red {
+        background-color: red;
+      }
+      .box.blue {
+        background-color: blue;
+      }
+      .box.yellow {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      <h1>{{greeting}}</h1>
+
+      <input
+        @keyup.enter="greet(greeting + '!!!!!!!!')"
+        type="text"
+        name=""
+        id=""
+        v-model="greeting"
+      />
+
+      <hr />
+      <button @click="toggleBox">Toggle box</button>
+      <div class="box red" v-if="isVisible"></div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      let app = Vue.createApp({
+        data: function () {
+          return {
+            greeting: "Hello, Kehinde",
+            isVisible: false,
+          };
+        },
+        methods: {
+          toggleBox() {
+            this.isVisible = !this.isVisible;
+          },
+          greet(greeting) {
+            console.log(greeting);
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
